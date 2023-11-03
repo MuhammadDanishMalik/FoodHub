@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:foodhub/Screens/Address.dart';
-import 'package:foodhub/Screens/Categories.dart';
-import 'package:foodhub/Screens/Food_Details.dart';
 import 'package:foodhub/Screens/Logins/Login.dart';
 import 'package:foodhub/Screens/OrderPage.dart';
+import 'package:foodhub/Widgets/DashBoardWidgets/dashboardTextField.dart';
+import 'package:foodhub/Widgets/DashBoardWidgets/dashboardTopList.dart';
+import 'package:foodhub/Widgets/DashBoardWidgets/dashboardTopList02.dart';
+import 'package:foodhub/Widgets/DashBoardWidgets/dashboardTopList03.dart';
+import 'package:foodhub/Widgets/DashBoardWidgets/filterContainer.dart';
+import 'package:foodhub/Widgets/DashBoardWidgets/textRow02.dart';
+import 'package:foodhub/Widgets/DashBoardWidgets/textRow04.dart';
+import 'package:foodhub/Widgets/DashBoardWidgets/topTitle.dart';
 import 'package:foodhub/Widgets/Views/profile2.dart';
-import 'package:foodhub/Widgets/Views/shimmer2.dart';
-import 'package:foodhub/Widgets/card.dart';
-import 'package:foodhub/Widgets/card02.dart';
-import 'package:foodhub/Widgets/categories.dart';
+import 'package:foodhub/Shimmer/shimmer2.dart';
 import 'package:getwidget/components/drawer/gf_drawer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
@@ -30,7 +33,7 @@ class Dashboard extends StatelessWidget {
         toolbarHeight: 100,
         actions: [
           Container(
-            margin: EdgeInsets.only(left: 0), // Add left margin
+            margin: EdgeInsets.only(left: 0),
             child: GestureDetector(
               onTap: () {
                 _scaffoldKey.currentState?.openDrawer(); // Open the drawer
@@ -52,7 +55,7 @@ class Dashboard extends StatelessWidget {
                       )
                     ],
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.sort,
                     color: Colors.black,
                   ),
@@ -60,7 +63,7 @@ class Dashboard extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(),
             child: Row(
@@ -326,7 +329,7 @@ class Dashboard extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.pushReplacement(
+                          Navigator.pop(
                               context,
                               PageTransition(
                                   type: PageTransitionType.fade,
@@ -377,265 +380,54 @@ class Dashboard extends StatelessWidget {
           children: [
             // Circular Progress Indicator that shows for 3 seconds
             FutureBuilder(
-              future: Future.delayed(Duration(seconds: 3)),
+              future: Future.delayed(Duration(seconds: 2)),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Container(
                       alignment: Alignment.center,
                       height: MediaQuery.of(context).size.height - 200,
-                      child: Shimmer02());
+                      child: const Shimmer02());
                 } else {
-                  return Column(
+                  return const Column(
                     children: [
                       // ... Your existing code ...
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 22),
-                        child: Row(
-                          children: [
-                            Text(
-                              "What would you like\nfor order",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black87),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
+                      TopTitle(),
+                      SizedBox(
                         height: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 22),
+                        padding: EdgeInsets.symmetric(horizontal: 22),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Center(
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.05,
-                                width: MediaQuery.of(context).size.width * 0.7,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Color.fromARGB(31, 112, 112, 112)),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: TextField(
-                                  textAlign: TextAlign.start,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 13,
-                                  ),
-                                  textInputAction: TextInputAction.none,
-                                  obscureText: false,
-                                  textAlignVertical: TextAlignVertical.bottom,
-                                  keyboardType: TextInputType.emailAddress,
-                                  decoration: InputDecoration(
-                                    focusColor: Colors.black26,
-                                    fillColor:
-                                        Color.fromARGB(255, 255, 255, 255),
-                                    filled: true,
-                                    prefixIcon: Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 10),
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.05, // Adjust this value
-                                      width: MediaQuery.of(context).size.width *
-                                          0.05, // Adjust this value
-                                      child: const Icon(
-                                        Icons.search,
-                                        color: Colors.black54,
-                                      ),
-                                    ),
-                                    prefixIconColor:
-                                        const Color.fromARGB(255, 3, 190, 150),
-
-                                    hintText:
-                                        "Find for food or restaurants", // Use hintText instead of label
-                                    floatingLabelBehavior:
-                                        FloatingLabelBehavior.never,
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            DashboardTextField(),
                             //Search Container
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.05,
-                              width: MediaQuery.of(context).size.width * 0.1200,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(6),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color:
-                                            Color.fromARGB(115, 202, 202, 202),
-                                        offset: Offset(0, 14),
-                                        blurRadius: 20,
-                                        spreadRadius: 1)
-                                  ]),
-                              child: Icon(Icons.tune,
-                                  color: Colors.orange.shade800),
-                            ),
+                            FilterContainer(),
                           ],
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 30,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 22),
-                        child: Container(
-                          height: 112,
-                          child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                Categories(
-                                  image: "assets/images/burger.png",
-                                  text: "Burger",
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Categories(
-                                  image: "assets/images/donat.png",
-                                  text: "Donat",
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Categories(
-                                  image: "assets/images/pizza.png",
-                                  text: "Pizza",
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Categories(
-                                  image: "assets/images/mexican.png",
-                                  text: "Mexican",
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Categories(
-                                  image: "assets/images/icecream.png",
-                                  text: "Cream",
-                                ),
-                              ]),
-                        ),
-                      ),
-                      const SizedBox(
+                      TopListView(),
+                      SizedBox(
                         height: 40,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 22),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Featured Reastaurents",
-                              style: GoogleFonts.poppins(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.bottomToTop,
-                                        child: CategoriesScreen()));
-                              },
-                              child: Text(
-                                "See All",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 15.sp,
-                                  color:
-                                      const Color.fromARGB(255, 255, 105, 36),
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
+                      //Featured Restaurent Text
+                      TextRow02(),
+                      SizedBox(
                         height: 5,
                       ),
-                      Container(
-                          height: 260,
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            physics: BouncingScrollPhysics(),
-                            children: [
-                              GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            type:
-                                                PageTransitionType.rightToLeft,
-                                            child: Food_Details()));
-                                  },
-                                  child: card(
-                                    image: "assets/images/card01.png",
-                                    mainText: "McDonald's ",
-                                  )),
-                              card(
-                                image: "assets/images/card02.png",
-                                mainText: "McDonald's ",
-                              ),
-                              card(
-                                image: "assets/images/card01.png",
-                                mainText: "McDonald's ",
-                              )
-                            ],
-                          )),
-                      const SizedBox(
+                      TopList2(),
+                      SizedBox(
                         height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 22),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Popular Items",
-                              style: GoogleFonts.poppins(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
+                      ), //Popular Items Text
+                      TextRow04(),
+                      SizedBox(
                         height: 10,
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 18),
-                        child: Row(children: [
-                          card02(
-                            image: "assets/images/noodles.png",
-                            Rating: "\$ 4.3 ",
-                            mainText: "McDonald's ",
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          card02(
-                            image: "assets/images/pizza2.png",
-                            Rating: "\$ 4.3 ",
-                            mainText: "McDonald's ",
-                          ),
-                        ]),
-                      ),
-                      const SizedBox(
+                      TopList3(),
+                      SizedBox(
                         height: 50,
                       )
                       // Rest of your widgets

@@ -49,7 +49,7 @@ class CategoriesCard extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 3),
                             child: Text(
-                              "4.3 ",
+                              " 4.3",
                               style: GoogleFonts.poppins(
                                 fontSize: 13.sp,
                                 fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ class CategoriesCard extends StatelessWidget {
                   Text(
                     "Chicken Hawaiian",
                     style: GoogleFonts.poppins(
-                      fontSize: 16.sp,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -108,7 +108,7 @@ class CategoriesCard extends StatelessWidget {
                   Text(
                     "\$10",
                     style: GoogleFonts.poppins(
-                        fontSize: 18.sp,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w600,
                         color: Colors.orange.shade800),
                   ),
@@ -123,7 +123,7 @@ class CategoriesCard extends StatelessWidget {
                     "Chicken Hawaiian",
                     style: GoogleFonts.poppins(
                         fontSize: 14.sp,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w600,
                         color: Colors.black54),
                   ),
                 ],

@@ -16,7 +16,7 @@ import 'package:foodhub/Screens/Splash.dart';
 import 'package:foodhub/Widgets/Profile.dart';
 import 'package:foodhub/Widgets/Views/card-shimmer.dart';
 import 'package:foodhub/Widgets/Views/profile2.dart';
-import 'package:foodhub/Widgets/Views/shimmer2.dart';
+import 'package:foodhub/Shimmer/shimmer2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
@@ -32,10 +32,7 @@ class App extends StatelessWidget {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Splash(),
-        theme: ThemeData(
-          // Add the useMaterial3 property here
-          useMaterial3: true,
-        ),
+        theme: ThemeData(),
       );
     });
   }

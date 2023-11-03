@@ -20,7 +20,8 @@ class card extends StatelessWidget {
         elevation: 5,
         shadowColor: Colors.black38,
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.7,
+          height: 120,
+          width: 260,
           decoration: BoxDecoration(),
           child: Column(children: [
             Container(
@@ -42,8 +43,8 @@ class card extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        height: 20,
-                        width: 70,
+                        height: 18,
+                        width: 65,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(12)),
@@ -156,9 +157,7 @@ class card extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 25,
-            ),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

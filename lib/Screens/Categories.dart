@@ -165,24 +165,22 @@ class CategoriesScreen extends StatelessWidget {
           Expanded(
             child: Container(
               height: 200,
-              child: ListView(scrollDirection: Axis.vertical, children: [
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.fade, child: Cart()));
-                    },
-                    child: CategoriesCard()),
-                const SizedBox(
-                  height: 5,
-                ),
-                CategoriesCard(),
-                const SizedBox(
-                  height: 5,
-                ),
-                CategoriesCard(),
-              ]),
+              child: ListView(
+                  scrollDirection: Axis.vertical,
+                  physics: BouncingScrollPhysics(),
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: Cart()));
+                        },
+                        child: CategoriesCard()),
+                    CategoriesCard(),
+                    CategoriesCard(),
+                  ]),
             ),
           )
         ]),
